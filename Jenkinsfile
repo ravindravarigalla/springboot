@@ -31,7 +31,7 @@ pipeline {
             steps {
                 sh  "gcloud auth list"
                 sh " gcloud auth activate-service-account --key-file ${gcloud}" 
-                sh  "gcloud builds submit -t gcr.io/my-project-suri-279708/spring"
+                sh  "gcloud builds submit -t gcr.io/my-project-suri-279708/spring ."
             }
         }
     }
