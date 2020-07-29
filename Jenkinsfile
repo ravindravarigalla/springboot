@@ -6,7 +6,7 @@ pipeline {
     CLUSTER = "gke-apps"
     CLUSTER_ZONE = "asia-southeast2-c"
     JENKINS_CRED = "${PROJECT}"
-    gcloud = credentials('my-project-suri-279708')
+    gcloud = credentialsId('my-project-suri-279708')
   }  
     agent any
     tools { 
