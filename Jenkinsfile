@@ -18,5 +18,11 @@ pipeline {
                 sh  'mvn clean install -Dskiptests'
             }
         }
+        stage ('build and push image to gcr') {
+            steps {
+                sh  "gcloud auth list"
+                sh  "gcloud builds submit -t gcr.io/my-project-suri-279708/spring"
+            }
+        }
     }
 }
