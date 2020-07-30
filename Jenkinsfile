@@ -35,5 +35,15 @@ pipeline {
                 sh  "gcloud builds submit -t gcr.io/my-project-suri-279708/spring ."
             }
         }
+       stage ('build and push image to gcr') {
+            steps {
+                sh  '''
+                    helm ls 
+                    helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
+                    helm repo update
+                    helm install sample gg
+                    '''
+            }
+        }
     }
 }
