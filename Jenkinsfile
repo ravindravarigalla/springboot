@@ -40,6 +40,7 @@ pipeline {
                 sh  '''
                     gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project my-project-suri-279708
                     helm ls 
+                    helm uninstall sample 
                     helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
                     helm repo update
                     helm install sample gg
