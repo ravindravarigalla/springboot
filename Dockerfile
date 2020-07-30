@@ -1,7 +1,13 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jdk-alpine AS builder
+WORKDIR target/dependency
+ARG APPJAR=target/*.jar
+COPY ${APPJAR} app.jar
+RUN jar -xf ./app.jar
+
+FROM openjdk:8-jre-alpine
 VOLUME /tmp
-EXPOSE 8080
-RUN mkdir /app
-WORKDIR /app
-COPY target/demo-0.0.1-SNAPSHOT.jar to /app/demo-0.0.1-SNAPSHOT.jar 
-ENTRYPOINT ["java","-jar","/demo-0.0.1-SNAPSHOT.jar"]
+ARG DEPENDENCY=target/dependency
+#COPY --from=builder ${DEPENDENCY}/BOOT-INF/lib /app/lib
+#COPY --from=builder ${DEPENDENCY}/META-INF /app/META-INF
+#COPY --from=builder ${DEPENDENCY}/BOOT-INF/classes /app
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.example.demo.DemoApplication"]
