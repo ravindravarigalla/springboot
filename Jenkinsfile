@@ -35,7 +35,7 @@ pipeline {
                 sh  "gcloud builds submit -t gcr.io/my-project-suri-279708/spring ."
             }
         }
-       stage ('build and push image to gcr') {
+       stage ('deployment') {
             steps {
                 sh  '''
                     gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project my-project-suri-279708
