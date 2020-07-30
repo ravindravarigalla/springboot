@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: gcr.io/ my-project-suri-279708/spring
+  repository: gcr.io/my-project-suri-279708/spring
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
