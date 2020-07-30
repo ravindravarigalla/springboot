@@ -1,10 +1,10 @@
 pipeline {
   environment {
-    PROJECT = "gke-nonprod-1"
-    APP_NAME = "halodoc-website"
+    PROJECT = "my-project-suri-279708"
+    APP_NAME = "sample"
     FE_SVC_NAME = "${APP_NAME}"
-    CLUSTER = "gke-apps"
-    CLUSTER_ZONE = "asia-southeast2-c"
+    CLUSTER = "cluster-1"
+    CLUSTER_ZONE = "us-central1-c"
     JENKINS_CRED = "${PROJECT}"
     gcloud = credentials('service_account')
   }  
@@ -38,6 +38,7 @@ pipeline {
        stage ('build and push image to gcr') {
             steps {
                 sh  '''
+                    gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project my-project-suri-279708
                     helm ls 
                     helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
                     helm repo update
